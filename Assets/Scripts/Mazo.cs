@@ -12,10 +12,7 @@ public class Mazo : MonoBehaviour
     void Start()
     {
         _image = GetComponent<SpriteRenderer>();
-
-
         CrearMazoCarta(_carta);
-
         CrearImagenCarta();
     }
 
