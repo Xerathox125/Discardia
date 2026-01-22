@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 672df336b4fbfcc4cb880d5aac18355f, type: 3}
-  m_Name: AS_Corazon
+  m_Name: Trece_Espada
   m_EditorClassIdentifier: Assembly-CSharp::Carta
-  id: 1
-  nombre: As_Corazon
-  valor: 1
-  tipo: 1
-  palo: 0
-  imagen: {fileID: -3917357483304832064, guid: 749087bcc5103c0478f1127d897d0acf, type: 3}
-  Descripticon: "ESTA CARTA ES EL AS DE CORAZON \n"
+  nombre: Trece_Espada
+  valor: 13
+  tipo: 0
+  palo: 2
+  imagen: {fileID: -637611302815885634, guid: 53f78432665bf7b438d0f9f302406387, type: 3}
+  descripcion: 

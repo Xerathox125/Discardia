@@ -5,12 +5,9 @@ public class Mazo : MonoBehaviour
 {
     private Carta _carta;
     [SerializeField] private List<Carta> _Mazos = new List<Carta>();
-
     private SpriteRenderer _image;
 
-
-    
-    
+      
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -36,13 +33,10 @@ public class Mazo : MonoBehaviour
         }
     }
 
-
-
     void CrearMazoCarta(Carta carta)
     {
         _Mazos.Add(carta);
-        print("CROE CARTA");
-
+        print("CREO CARTA");
     }
 
 

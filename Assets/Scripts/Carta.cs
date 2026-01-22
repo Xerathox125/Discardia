@@ -1,9 +1,9 @@
 using UnityEngine;
 
 public enum TipoCarta
-{
-    Especial,
-    Normal
+{    
+    Normal,
+    Especial
 }
 
 public enum Palo
@@ -19,7 +19,6 @@ public enum Palo
 [CreateAssetMenu(fileName = "Nueva Carta", menuName = "Juego/Mazo/Carta")]
 public class Carta : ScriptableObject
 {
-    [SerializeField] private int id;
     [SerializeField] private string nombre;
     [SerializeField] private int valor;
     [SerializeField] private TipoCarta tipo;
@@ -27,7 +26,7 @@ public class Carta : ScriptableObject
     [SerializeField] private Sprite imagen;
     [SerializeField, TextArea] private string descripcion;
 
-    public int Id => id;
+    
     public string Nombre => nombre;
     public int Valor => valor;
     public TipoCarta Tipo => tipo;

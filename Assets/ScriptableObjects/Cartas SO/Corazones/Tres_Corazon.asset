@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 672df336b4fbfcc4cb880d5aac18355f, type: 3}
+  m_Name: Tres_Corazon
+  m_EditorClassIdentifier: Assembly-CSharp::Carta
+  nombre: Tres_Corazon
+  valor: 3
+  tipo: 0
+  palo: 0
+  imagen: {fileID: 345155940887093190, guid: c23b0d35506b6d44ba81e94964c40cd4, type: 3}
+  descripcion: 
