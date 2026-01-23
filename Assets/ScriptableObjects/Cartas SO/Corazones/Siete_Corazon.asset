@@ -16,5 +16,5 @@ MonoBehaviour:
   valor: 7
   tipo: 0
   palo: 0
-  imagen: {fileID: 4035994320253739659, guid: 80c1a95d0f4780a4d8db1a3c7dfb3996, type: 3}
+  imagen: {fileID: 4035994320253739659, guid: bc7173ab7b2a433479c595a292fb9a25, type: 3}
   descripcion: 

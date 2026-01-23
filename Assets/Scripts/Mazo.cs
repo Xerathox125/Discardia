@@ -3,37 +3,57 @@ using UnityEngine;
 
 public class Mazo : MonoBehaviour
 {
-    private Carta _carta;
-    [SerializeField] private List<Carta> _Mazos = new List<Carta>();
-    private SpriteRenderer _image;
+    [SerializeField] private List<Carta> _cartasBase;
+    private Stack<Carta> _pilaDeCartas = new Stack<Carta>();
 
-      
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Awake()
     {
-        _image = GetComponent<SpriteRenderer>();
-        CrearMazoCarta(_carta);
-        CrearImagenCarta();
+        PrepararMazo();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-     
-    }
 
-    void CrearImagenCarta()
+    public void PrepararMazo()
     {
-        if (_Mazos.Count > 0)
+        List<Carta> listaTemporal = new List<Carta>(_cartasBase);
+
+        for (int i = 0; i < listaTemporal.Count; i++ )
         {
-            _image.sprite = _Mazos[0].Imagen;
+            Carta temp = listaTemporal[i];
+            int randomIndex = Random.Range(i, listaTemporal.Count);
+            listaTemporal[i] = listaTemporal[randomIndex];
+            listaTemporal[randomIndex] = temp;
         }
+        _pilaDeCartas.Clear();
+
+        foreach (Carta c in listaTemporal)
+        {
+            _pilaDeCartas.Push(c);
+        }
+
+        Debug.Log($"Mazo listo con {_pilaDeCartas.Count} cartas.");
     }
 
-    void CrearMazoCarta(Carta carta)
+  
+    public Carta RobarCartaSuperior()
     {
-        _Mazos.Add(carta);
-        print("CREO CARTA");
+        if (_pilaDeCartas.Count > 0)
+        {
+            return _pilaDeCartas.Pop();
+        }
+        Debug.LogWarning("El mazo está vacío.");
+        return null;
+    }
+
+    public List<Carta> GenerarManoInicial(int cantidad = 8)
+    {
+        List<Carta> nuevMano = new List<Carta>();
+        for(int i = 0; i < cantidad; i++)
+        {
+            Carta c = RobarCartaSuperior();
+
+            if ( c != null ) nuevMano.Add( c );
+        }
+        return nuevMano;
     }
 
 
