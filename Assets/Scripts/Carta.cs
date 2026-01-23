@@ -14,8 +14,6 @@ public enum Palo
     Trebol
 }
 
-
-
 [CreateAssetMenu(fileName = "Nueva Carta", menuName = "Juego/Mazo/Carta")]
 public class Carta : ScriptableObject
 {
