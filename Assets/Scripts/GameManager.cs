@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -8,9 +9,13 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        // 2. Le decimos a la mano que pida sus cartas
-        _manejadorMano.DibujarManoInicial();
+        
+        StartCoroutine(EsperarYDibujar());
     }
 
-    
+    IEnumerator EsperarYDibujar()
+    {
+        yield return new WaitForEndOfFrame();
+        _manejadorMano.DibujarManoInicial();
+    }
 }

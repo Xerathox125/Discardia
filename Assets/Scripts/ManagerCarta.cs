@@ -8,7 +8,7 @@ public class ManagerCarta : MonoBehaviour
     [SerializeField] private Transform _contendorMano;
     [SerializeField] private Mano _mano;
 
-     private float _espaciado = 3.5f;
+     private float _espaciado = 2.5f;
 
 
     public void DibujarManoInicial()
@@ -25,7 +25,11 @@ public class ManagerCarta : MonoBehaviour
 
             float posicionX = puntoInicioX + (i * _espaciado);
 
-            nuevaCartaGO.transform.localPosition = new Vector3(posicionX, 0, 0);
+            float curvaY = -Mathf.Abs(posicionX) * 0.15f; 
+            float rotacionZ = posicionX * -5f;
+
+            nuevaCartaGO.transform.localPosition = new Vector3(posicionX, curvaY, 0);
+            nuevaCartaGO.transform.localRotation = Quaternion.Euler(0, 0, rotacionZ);
 
             CartaVisual visual = nuevaCartaGO.GetComponent<CartaVisual>();
 
