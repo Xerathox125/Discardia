@@ -24,7 +24,6 @@ public class Carta : ScriptableObject
     [SerializeField] private Sprite imagen;
     [SerializeField, TextArea] private string descripcion;
 
-    
     public string Nombre => nombre;
     public int Valor => valor;
     public TipoCarta Tipo => tipo;

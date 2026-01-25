@@ -44,7 +44,7 @@ public class Mazo : MonoBehaviour
         return null;
     }
 
-    public List<Carta> GenerarManoInicial(int cantidad = 8)
+    public List<Carta> GenerarManoInicial(int cantidad)
     {
         List<Carta> nuevMano = new List<Carta>();
         for(int i = 0; i < cantidad; i++)

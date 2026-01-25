@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 672df336b4fbfcc4cb880d5aac18355f, type: 3}
+  m_Name: 10_Diez_Espada
+  m_EditorClassIdentifier: Assembly-CSharp::Carta
+  nombre: Diez_Espada
+  valor: 10
+  tipo: 0
+  palo: 2
+  imagen: {fileID: -7122778435243831584, guid: 31edbde62da3a0b4d8bbef638c3fd057, type: 3}
+  descripcion: 

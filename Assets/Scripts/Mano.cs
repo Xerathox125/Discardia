@@ -9,13 +9,12 @@ public class Mano : MonoBehaviour
     public List<Carta> CartaEnMano => _cartasEnMano;
 
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         if (_mazoReferencia != null)
         {
-            _cartasEnMano = _mazoReferencia.GenerarManoInicial(8);
-            print($"Mano creada con {_cartasEnMano.Count} cartas. " );
+            _cartasEnMano = _mazoReferencia.GenerarManoInicial(12);
+            print($"Mano creada con {_cartasEnMano.Count} cartas." );
         }
     }
 
@@ -25,7 +24,7 @@ public class Mano : MonoBehaviour
         if (nueva != null)
         {
             _cartasEnMano.Add(nueva);
-            Debug.Log($"Robaste: {nueva.Nombre}");
+            Debug.Log($"Robaste la carta: {nueva.Nombre}");
         }
     }
 
