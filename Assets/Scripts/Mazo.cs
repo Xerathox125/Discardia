@@ -11,7 +11,6 @@ public class Mazo : MonoBehaviour
         PrepararMazo();
     }
 
-
     public void PrepararMazo()
     {
         List<Carta> listaTemporal = new List<Carta>(_cartasBase);
@@ -51,10 +50,8 @@ public class Mazo : MonoBehaviour
         {
             Carta c = RobarCartaSuperior();
 
-            if ( c != null ) nuevMano.Add( c );
+            if (c != null) nuevMano.Add(c);
         }
         return nuevMano;
     }
-
-
 }

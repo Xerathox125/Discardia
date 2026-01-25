@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 672df336b4fbfcc4cb880d5aac18355f, type: 3}
-  m_Name: 2_Dos_Diamante
+  m_Name: 9_Nueve_Espada
   m_EditorClassIdentifier: Assembly-CSharp::Carta
-  nombre: Dos_Diamante
-  valor: 2
+  nombre: Nueve_Espada
+  valor: 9
   tipo: 0
-  palo: 1
-  imagen: {fileID: 4952599533998900296, guid: fc4b09d5e80f5974199b9a7d403e4a94, type: 3}
+  palo: 2
+  imagen: {fileID: -472792151280641777, guid: 2068ac9eadd97d640a1d95270b3d6075, type: 3}
   descripcion: 

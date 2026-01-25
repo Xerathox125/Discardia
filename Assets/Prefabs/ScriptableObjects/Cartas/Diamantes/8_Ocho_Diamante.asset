@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 672df336b4fbfcc4cb880d5aac18355f, type: 3}
-  m_Name: 10_Diez_Diamante
+  m_Name: 8_Ocho_Diamante
   m_EditorClassIdentifier: Assembly-CSharp::Carta
-  nombre: Diez_Diamante
-  valor: 10
+  nombre: Ocho_Diamante
+  valor: 8
   tipo: 0
   palo: 1
-  imagen: {fileID: -4157683587730901999, guid: 3807e27e1b4177c4ebf90b155bcec35a, type: 3}
+  imagen: {fileID: 7099108086745992607, guid: 297c8bb9adebab44c8d85e68a7296618, type: 3}
   descripcion: 
