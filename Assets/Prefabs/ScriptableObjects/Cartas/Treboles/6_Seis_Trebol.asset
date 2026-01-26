@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 672df336b4fbfcc4cb880d5aac18355f, type: 3}
+  m_Name: 6_Seis_Trebol
+  m_EditorClassIdentifier: Assembly-CSharp::Carta
+  nombre: Seis_Trebol
+  valor: 6
+  tipo: 0
+  palo: 3
+  imagen: {fileID: -7333063039449236174, guid: 8130728cebc137e4a83d103eb2e5c6e0, type: 3}
+  descripcion: 
