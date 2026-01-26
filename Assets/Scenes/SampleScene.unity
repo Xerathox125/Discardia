@@ -344,8 +344,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 760756594}
-  - component: {fileID: 760756592}
   - component: {fileID: 760756591}
+  - component: {fileID: 760756595}
   - component: {fileID: 760756593}
   m_Layer: 0
   m_Name: Sistema de Juego
@@ -367,18 +367,82 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ManagerCarta
   _prefabCarta: {fileID: 3538411816888903347, guid: 29a10d2c4e06fd3469556150aa50fae5, type: 3}
-  _contendorMano: {fileID: 1234431515}
+  _contenedorMano: {fileID: 1234431515}
   _mano: {fileID: 1234431516}
   _espaciado: 2.25
   _intensidadCurva: 0.05
   _intensidadRotacion: 0.6
---- !u!114 &760756592
+--- !u!114 &760756593
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 760756590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a291c4edd3dae24aa9ba385342ea970, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  _mazo: {fileID: 872788418}
+  _manejadorMano: {fileID: 760756591}
+  _manejadorMazo: {fileID: 760756595}
+--- !u!4 &760756594
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 760756590}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.41559, y: 0.31182, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &760756595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 760756590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c57ba877c3c862d40809bc31a342d8ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ManagerMazo
+  _mazoLogico: {fileID: 872788418}
+  _prefabVisualMazo: {fileID: 3538411816888903347, guid: 29a10d2c4e06fd3469556150aa50fae5, type: 3}
+  _contenedorMazo: {fileID: 872788419}
+  _cartasAVisualizar: 5
+--- !u!1 &872788417
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 872788419}
+  - component: {fileID: 872788418}
+  - component: {fileID: 872788420}
+  m_Layer: 0
+  m_Name: Mazo
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &872788418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872788417}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d095a0b3c9fd14c469ce9a84b09ae37b, type: 3}
@@ -437,35 +501,39 @@ MonoBehaviour:
   - {fileID: 11400000, guid: df80de9ac938d474685e82e5f6eea805, type: 2}
   - {fileID: 11400000, guid: f8258b8ecefb70e44ab144c99a8ae362, type: 2}
   - {fileID: 11400000, guid: 0475b0a6f20236d44b1644cfb14d8a04, type: 2}
---- !u!114 &760756593
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 760756590}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a291c4edd3dae24aa9ba385342ea970, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  _mazo: {fileID: 760756592}
-  _manejadorMano: {fileID: 760756591}
---- !u!4 &760756594
+  _prefabMazo: {fileID: 872788417}
+  _contenedorMazo: {fileID: 872788419}
+--- !u!4 &872788419
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 760756590}
+  m_GameObject: {fileID: 872788417}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.41559, y: 0.31182, z: 0}
+  m_LocalPosition: {x: 11.29, y: -2.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &872788420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872788417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c57ba877c3c862d40809bc31a342d8ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ManagerMazo
+  _mazoLogico: {fileID: 872788418}
+  _prefabVisualMazo: {fileID: 3538411816888903347, guid: 29a10d2c4e06fd3469556150aa50fae5, type: 3}
+  _contenedorMazo: {fileID: 872788419}
+  _cartasAVisualizar: 5
 --- !u!1 &1234431513
 GameObject:
   m_ObjectHideFlags: 0
@@ -510,7 +578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92e0b6f779debe94e97fd16cb185d7ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Mano
-  _mazoReferencia: {fileID: 760756592}
+  _mazoReferencia: {fileID: 872788418}
   _cartasEnMano: []
 --- !u!1 &1997799715
 GameObject:
@@ -606,8 +674,9 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1997799717}
   - {fileID: 641560778}
   - {fileID: 178622253}
   - {fileID: 1234431515}
   - {fileID: 760756594}
-  - {fileID: 1997799717}
+  - {fileID: 872788419}
