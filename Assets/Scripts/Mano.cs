@@ -13,7 +13,7 @@ public class Mano : MonoBehaviour
     {
         if (_mazoReferencia != null)
         {
-            _cartasEnMano = _mazoReferencia.GenerarManoInicial(12);
+            _cartasEnMano = _mazoReferencia.GenerarMano(12);
             print($"Mano creada con {_cartasEnMano.Count} cartas." );
         }
     }
