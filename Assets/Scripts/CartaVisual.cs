@@ -1,28 +1,33 @@
-using TMPro;
-using UnityEngine;
+ using UnityEngine;
 
 public class CartaVisual : MonoBehaviour
 {
     private SpriteRenderer _renderizador;
+    [SerializeField] private Sprite _dorsoSprite;
 
     private void Awake()
     {
        _renderizador = GetComponent<SpriteRenderer>();
     }
 
-    public void ConfigurarVisual(Carta data)
+    public void ConfigurarVisual(Carta data, bool mostrarFrente)
     {
 
-        Debug.Log("data es:" + data);
-        Debug.Log(" renderizador es:" + _renderizador);
-
-        if (data != null && _renderizador != null)
+        if (mostrarFrente)
         {
-            _renderizador.sprite = data.Imagen;
+            // Si queremos mostrar el frente, SÍ necesitamos data
+            if (data != null)
+            {
+                _renderizador.sprite = data.Imagen;
+            }
+            else
+            {
+                Debug.LogWarning("Se intentó mostrar el frente pero 'data' es nulo.");
+            }
         }
         else
         {
-            Debug.LogError($"Error en {gameObject.name}: Data o Renderizador faltante");
+            _renderizador.sprite = _dorsoSprite;
         }
     }
 }

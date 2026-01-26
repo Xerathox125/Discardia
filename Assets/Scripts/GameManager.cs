@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private Mazo _mazo;
     [SerializeField] private ManagerCarta _manejadorMano;
+    [SerializeField] private ManagerMazo _manejadorMazo;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -16,5 +17,6 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         _manejadorMano.DibujarManoInicial();
+        _manejadorMazo.DibujarMazoVisual();
     }
 }

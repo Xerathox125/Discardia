@@ -103,3 +103,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6f53e24f5e48844baaa4bfe1ef9468e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CartaVisual
+  _dorsoSprite: {fileID: -3345374736884171346, guid: 617eb73b2c5932a4aa55cf797973ad65, type: 3}

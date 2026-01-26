@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 public class ManagerCarta : MonoBehaviour
 {
     [SerializeField] private GameObject _prefabCarta;
-    [SerializeField] private Transform _contendorMano;
+    [SerializeField] private Transform _contenedorMano;
     [SerializeField] private Mano _mano;
 
     [Header("Ajustes Visuales")]
@@ -17,7 +17,7 @@ public class ManagerCarta : MonoBehaviour
     void Update()
     {
         // Esto permite que el abanico se actualice mientras mueves los sliders
-        if (_contendorMano.childCount > 0)
+        if (_contenedorMano.childCount > 0)
         {
             ActualizarSeparacionDeMano();
         }        
@@ -28,17 +28,17 @@ public class ManagerCarta : MonoBehaviour
         if (_mano == null) { Debug.LogError("No hay referencia a Mano"); return; }
 
         // Limpiar mano anterior si existe (opcional)
-        foreach (Transform hijo in _contendorMano) Destroy(hijo.gameObject);
+        foreach (Transform hijo in _contenedorMano) Destroy(hijo.gameObject);
 
 
         for (int i = 0; i < _mano.CartaEnMano.Count; i++)
         {
-            GameObject nuevaCartaGO = Instantiate(_prefabCarta, _contendorMano);     
+            GameObject nuevaCartaGO = Instantiate(_prefabCarta, _contenedorMano);     
             CartaVisual visual = nuevaCartaGO.GetComponent<CartaVisual>();
 
             if (visual != null)
             {
-                visual.ConfigurarVisual(_mano.CartaEnMano[i]);
+                visual.ConfigurarVisual(_mano.CartaEnMano[i], true);
             }
         }
         ActualizarSeparacionDeMano();
@@ -46,15 +46,15 @@ public class ManagerCarta : MonoBehaviour
 
     public void ActualizarSeparacionDeMano()
     {
-        int totalCartas = _contendorMano.childCount;
+        int totalCartas = _contenedorMano.childCount;
         if (totalCartas == 0) return;
 
-        float anchoTotal = (totalCartas - 1) * _espaciado;
+        float anchoTotal = (totalCartas - 1) * _espaciado;  
         float puntoInicioX = -anchoTotal / 2f;
 
         for (int i = 0; i < totalCartas; i++)
         {
-            Transform carta = _contendorMano.GetChild(i);
+            Transform carta = _contenedorMano.GetChild(i);
 
             // 1. Cálculo de posición horizontal
             float posicionX = puntoInicioX + (i * _espaciado);
