@@ -9,7 +9,9 @@ public class ManagerCarta : MonoBehaviour
     [SerializeField] private Mano _mano;
 
     [Header("Ajustes Visuales")]
-    [Range(-0, 4.5f)] public float _espaciado = 2.25f;
+    //Ancho Fijo en public para cambiarlo facile en Unity
+    [SerializeField] public float _anchoManoMax = 15f;
+    //[Range(-0, 4.5f)] public float _espaciado = 2.25f;
     [Range(-0.3f, 0.3f)] public float _intensidadCurva = 0.05f;
     [Range(-5f, 5f)] public float _intensidadRotacion = 0.6f;
 
@@ -49,17 +51,19 @@ public class ManagerCarta : MonoBehaviour
         int totalCartas = _contenedorMano.childCount;
         if (totalCartas == 0) return;
 
-        float anchoTotal = (totalCartas - 1) * _espaciado;  
+        //Espaciado para que entre en el ancho, suplanta a _espaciado
+        float espaciadoCalculado = _anchoManoMax / (totalCartas - 1);
+        float anchoTotal = (totalCartas - 1) * espaciadoCalculado;  
         float puntoInicioX = -anchoTotal / 2f;
 
         for (int i = 0; i < totalCartas; i++)
         {
             Transform carta = _contenedorMano.GetChild(i);
 
-            // 1. Cálculo de posición horizontal
-            float posicionX = puntoInicioX + (i * _espaciado);
+            // 1. Cï¿½lculo de posiciï¿½n horizontal
+            float posicionX = puntoInicioX + (i * espaciadoCalculado);
 
-            // 2. Cálculo de la curva (Y) y rotación (Z)
+            // 2. Cï¿½lculo de la curva (Y) y rotaciï¿½n (Z)
             // Usamos Mathf.Abs para que las cartas de los extremos bajen
             float curvaY = -Mathf.Abs(posicionX) * _intensidadCurva;
             float rotacionZ = posicionX * -_intensidadRotacion;
@@ -68,7 +72,7 @@ public class ManagerCarta : MonoBehaviour
             carta.localPosition = new Vector3(posicionX, curvaY, 0);
             carta.localRotation = Quaternion.Euler(0, 0, rotacionZ);
 
-            // 4. Ajuste de Capa para que la carta x+1 esté encima de la carta x (Sorting Order)
+            // 4. Ajuste de Capa para que la carta x+1 estï¿½ encima de la carta x (Sorting Order)
             SpriteRenderer sr = carta.GetComponentInChildren<SpriteRenderer>();
             if (sr != null)
             {

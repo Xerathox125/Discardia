@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class Mazo : MonoBehaviour
@@ -51,7 +52,7 @@ public class Mazo : MonoBehaviour
         {
             return _pilaDeCartas.Pop();
         }
-        Debug.LogWarning("El mazo está vacío.");
+        Debug.LogWarning("El mazo estï¿½ vacï¿½o.");
         return null;
     }
 
@@ -66,4 +67,7 @@ public class Mazo : MonoBehaviour
         }
         return nuevMano;
     }
+
+    //Get para conocer cuantas cartas hay en el mazo
+     public int Count => _pilaDeCartas.Count; 
 }
