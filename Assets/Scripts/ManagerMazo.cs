@@ -18,7 +18,6 @@ public class ManagerMazo : MonoBehaviour
     [SerializeField] private float _offsetMazo = 0.02f;
 
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         DibujarMazoVisual();
@@ -68,7 +67,7 @@ public class ManagerMazo : MonoBehaviour
         foreach (Transform t in _contenedorMazo) Destroy(t.gameObject);
 
         //Intento de mostrar todas las cartas del mazo
-        int numCartas =_mazoLogico.Count;
+        int numCartas = _mazoLogico.Count;
         for (int i = 0; i < numCartas; i++)
         {
             GameObject nuevaCarta = Instantiate(_prefabVisualMazo, _contenedorMazo);

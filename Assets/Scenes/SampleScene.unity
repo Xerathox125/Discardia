@@ -348,7 +348,7 @@ GameObject:
   - component: {fileID: 760756595}
   - component: {fileID: 760756593}
   m_Layer: 0
-  m_Name: Sistema de Juego
+  m_Name: SistemaDeJuego
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -369,7 +369,7 @@ MonoBehaviour:
   _prefabCarta: {fileID: 3538411816888903347, guid: 29a10d2c4e06fd3469556150aa50fae5, type: 3}
   _contenedorMano: {fileID: 1234431515}
   _mano: {fileID: 1234431516}
-  _espaciado: 2.25
+  _anchoManoMax: 15
   _intensidadCurva: 0.05
   _intensidadRotacion: 0.6
 --- !u!114 &760756593
@@ -419,6 +419,7 @@ MonoBehaviour:
   _contenedorMazo: {fileID: 872788419}
   _manoReferencia: {fileID: 0}
   _managerCartaReferencia: {fileID: 0}
+  _offsetMazo: 0.02
 --- !u!1 &872788417
 GameObject:
   m_ObjectHideFlags: 0
@@ -514,9 +515,9 @@ Transform:
   m_GameObject: {fileID: 872788417}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.29, y: -2.02, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 11.84, y: -2.05, z: 0}
+  m_LocalScale: {x: 0.735, y: 0.735, z: 0.735}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -537,6 +538,7 @@ MonoBehaviour:
   _contenedorMazo: {fileID: 872788419}
   _manoReferencia: {fileID: 1234431516}
   _managerCartaReferencia: {fileID: 760756591}
+  _offsetMazo: 0.02
 --- !u!61 &872788421
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -571,7 +573,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.004686594, y: -0.001323581}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -581,7 +583,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 3, y: 4}
+  m_Size: {x: 2.264267, y: 3.032576}
   m_EdgeRadius: 0
 --- !u!1 &1234431513
 GameObject:
@@ -640,7 +642,7 @@ GameObject:
   - component: {fileID: 1997799717}
   - component: {fileID: 1997799716}
   m_Layer: 0
-  m_Name: Table_Background_0
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -714,8 +716,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.47851, y: 0.47851, z: 0.47851}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.47851, z: 0.47851}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -723,9 +725,9 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1997799717}
   - {fileID: 641560778}
   - {fileID: 178622253}
-  - {fileID: 1234431515}
+  - {fileID: 1997799717}
   - {fileID: 760756594}
   - {fileID: 872788419}
+  - {fileID: 1234431515}

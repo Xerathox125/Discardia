@@ -7,13 +7,9 @@ public class Mazo : MonoBehaviour
     [SerializeField] private List<Carta> _cartasBase;
     [SerializeField] private GameObject _prefabMazo;
     [SerializeField] private Transform _contenedorMazo;
-    
-    
+       
     private Stack<Carta> _pilaDeCartas = new Stack<Carta>();
    
-
-
-
     private void Awake()
     {
         PrepararMazo();
@@ -39,12 +35,6 @@ public class Mazo : MonoBehaviour
 
         Debug.Log($"Mazo listo con {_pilaDeCartas.Count} cartas.");
     }
-
-
-    
-
-
-
 
     public Carta RobarCartaSuperior()
     {
