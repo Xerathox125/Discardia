@@ -1,12 +1,12 @@
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.InputSystem;
+
 
 public class ManagerCarta : MonoBehaviour
 {
     [SerializeField] private GameObject _prefabCarta;
     [SerializeField] private Transform _contenedorMano;
-    [SerializeField] private Mano _mano;
+    [SerializeField] private Mano _manoReferencia;
 
     [Header("Ajustes Visuales")]
     //Ancho Fijo en public para cambiarlo facile en Unity
@@ -16,31 +16,62 @@ public class ManagerCarta : MonoBehaviour
     [Range(-5f, 5f)] public float _intensidadRotacion = 0.6f;
 
 
+
+    public GameObject PrefabCarta => _prefabCarta;
+
+
     void Update()
     {
-        // Esto permite que el abanico se actualice mientras mueves los sliders
-        if (_contenedorMano.childCount > 0)
-        {
-            ActualizarSeparacionDeMano();
-        }        
+        //// Esto permite que el abanico se actualice mientras mueves los sliders
+        //if (_contenedorMano.childCount > 0)
+        //{
+
+        // ActualizarSeparacionDeMano();
+
+        //}      
+
     }
+
+    private void OnValidate()
+    {
+        ActualizarSeparacionDeMano();
+    }
+
+
+    public GameObject SeleccionarCartaDeMano()
+    {
+        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero, Mathf.Infinity, 1 << 8);
+
+            if (hit)
+            {
+                Debug.Log("CLICK DETECTADO en Mano!");
+                return hit.collider.gameObject;
+            }
+            return null;
+        }
+        return null;
+    }
+
 
     public void DibujarManoInicial()
     {
-        if (_mano == null) { Debug.LogError("No hay referencia a Mano"); return; }
+        if (_manoReferencia == null) { Debug.LogError("No hay referencia a Mano"); return; }
 
         // Limpiar mano anterior si existe (opcional)
         foreach (Transform hijo in _contenedorMano) Destroy(hijo.gameObject);
 
 
-        for (int i = 0; i < _mano.CartaEnMano.Count; i++)
+        for (int i = 0; i < _manoReferencia.CartaEnMano.Count; i++)
         {
             GameObject nuevaCartaGO = Instantiate(_prefabCarta, _contenedorMano);     
             CartaVisual visual = nuevaCartaGO.GetComponent<CartaVisual>();
 
             if (visual != null)
             {
-                visual.ConfigurarVisual(_mano.CartaEnMano[i], true);
+                visual.ConfigurarCarta(_manoReferencia.CartaEnMano[i], true, 8);
             }
         }
         ActualizarSeparacionDeMano();

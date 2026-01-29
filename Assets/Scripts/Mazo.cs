@@ -1,5 +1,5 @@
+using System;
 using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
 
 public class Mazo : MonoBehaviour
@@ -7,9 +7,10 @@ public class Mazo : MonoBehaviour
     [SerializeField] private List<Carta> _cartasBase;
     [SerializeField] private GameObject _prefabMazo;
     [SerializeField] private Transform _contenedorMazo;
-       
-    private Stack<Carta> _pilaDeCartas = new Stack<Carta>();
-   
+
+    public event Action OnMazoChanged;
+
+
     private void Awake()
     {
         PrepararMazo();
@@ -17,32 +18,30 @@ public class Mazo : MonoBehaviour
 
     public void PrepararMazo()
     {
-        List<Carta> listaTemporal = new List<Carta>(_cartasBase);
-
-        for (int i = 0; i < listaTemporal.Count; i++ )
+        for (int i = 0; i < _cartasBase.Count; i++ )
         {
-            Carta temp = listaTemporal[i];
-            int randomIndex = Random.Range(i, listaTemporal.Count);
-            listaTemporal[i] = listaTemporal[randomIndex];
-            listaTemporal[randomIndex] = temp;
+            int randomIndex = UnityEngine.Random.Range(i, _cartasBase.Count);
+            
+            Carta temp = _cartasBase[i];
+            _cartasBase[i] = _cartasBase[randomIndex];
+            _cartasBase[randomIndex] = temp;
         }
-        _pilaDeCartas.Clear();
-
-        foreach (Carta c in listaTemporal)
-        {
-            _pilaDeCartas.Push(c);
-        }
-
-        Debug.Log($"Mazo listo con {_pilaDeCartas.Count} cartas.");
     }
 
     public Carta RobarCartaSuperior()
     {
-        if (_pilaDeCartas.Count > 0)
+        if (_cartasBase.Count > 0)
         {
-            return _pilaDeCartas.Pop();
+            int ultimoIndice = _cartasBase.Count - 1;
+            Carta cartaSeleccionada = _cartasBase[ultimoIndice];
+
+            _cartasBase.RemoveAt(ultimoIndice);
+            OnMazoChanged?.Invoke();
+
+            return cartaSeleccionada;
+
         }
-        Debug.LogWarning("El mazo est� vac�o.");
+        Debug.LogWarning("El mazo esta vacio.");
         return null;
     }
 
@@ -58,6 +57,20 @@ public class Mazo : MonoBehaviour
         return nuevMano;
     }
 
+    public bool QuitarCartaEspecifica(Carta cartaAQuitar)
+    {
+        if (_cartasBase.Contains(cartaAQuitar))
+        {
+            _cartasBase.Remove(cartaAQuitar);
+            Debug.Log($"Carta {cartaAQuitar.name} eliminada selectivamente.");
+            OnMazoChanged?.Invoke();
+            return true;
+        }
+        return false;
+    }
+
+
     //Get para conocer cuantas cartas hay en el mazo
-     public int Count => _pilaDeCartas.Count; 
+    public int Count => _cartasBase.Count;
+    public List<Carta> MazoBase => _cartasBase;
 }

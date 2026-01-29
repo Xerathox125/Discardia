@@ -385,8 +385,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ManagerCarta
   _prefabCarta: {fileID: 3538411816888903347, guid: 29a10d2c4e06fd3469556150aa50fae5, type: 3}
   _contenedorMano: {fileID: 1234431515}
-  _mano: {fileID: 1234431516}
-  _espaciado: 2.25
+  _manoReferencia: {fileID: 1234431516}
+  _anchoManoMax: 15
   _intensidadCurva: 0.05
   _intensidadRotacion: 0.6
 --- !u!114 &760756593
@@ -401,6 +401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a291c4edd3dae24aa9ba385342ea970, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  _contenedorCartasJuego: {fileID: 1192365560}
   _mazo: {fileID: 872788418}
   _manejadorMano: {fileID: 760756591}
   _manejadorMazo: {fileID: 760756595}
@@ -436,6 +437,7 @@ MonoBehaviour:
   _contenedorMazo: {fileID: 872788419}
   _manoReferencia: {fileID: 0}
   _managerCartaReferencia: {fileID: 0}
+  _offsetMazo: 0.02
 --- !u!1 &872788417
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,6 +556,7 @@ MonoBehaviour:
   _contenedorMazo: {fileID: 872788419}
   _manoReferencia: {fileID: 1234431516}
   _managerCartaReferencia: {fileID: 760756591}
+  _offsetMazo: 0.02
 --- !u!61 &872788421
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -600,6 +603,37 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3, y: 4}
   m_EdgeRadius: 0
+--- !u!1 &1192365559
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1192365560}
+  m_Layer: 0
+  m_Name: ContendorJuego
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1192365560
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192365559}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.72, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1234431513
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,7 +679,57 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Mano
   _mazoReferencia: {fileID: 872788418}
+  _manejadorCarta: {fileID: 760756591}
   _cartasEnMano: []
+--- !u!1 &1886842141
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1886842143}
+  - component: {fileID: 1886842142}
+  m_Layer: 0
+  m_Name: juego
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1886842142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1886842141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d74be1464ce9b3d418ff1f0fa8aafc1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneClickVisualizer
+  cursorSprite: {fileID: 0}
+  clickColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  clickFlashDuration: 0.15
+  cursorScale: 0.2
+  hideSystemCursor: 1
+--- !u!4 &1886842143
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1886842141}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.66951, y: -3.18395, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1997799715
 GameObject:
   m_ObjectHideFlags: 0
@@ -741,8 +825,10 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1997799717}
+  - {fileID: 1886842143}
   - {fileID: 641560778}
   - {fileID: 178622253}
   - {fileID: 1234431515}
+  - {fileID: 1192365560}
   - {fileID: 760756594}
   - {fileID: 872788419}

@@ -1,5 +1,4 @@
 using UnityEngine;
-
 public enum TipoCarta
 {    
     Normal,
@@ -23,11 +22,12 @@ public class Carta : ScriptableObject
     [SerializeField] private Palo palo;
     [SerializeField] private Sprite imagen;
     [SerializeField, TextArea] private string descripcion;
-
+    //[SerializeField] private string tagName;
     public string Nombre => nombre;
     public int Valor => valor;
     public TipoCarta Tipo => tipo;
     public Palo Palo => palo;
     public Sprite Imagen => imagen;
     public string Descripcion => descripcion;
+   //public string TagName => tagName;
 }

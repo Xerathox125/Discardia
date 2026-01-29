@@ -384,6 +384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a291c4edd3dae24aa9ba385342ea970, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  _contendeorCartasJuego: {fileID: 1751925433}
   _mazo: {fileID: 872788418}
   _manejadorMano: {fileID: 760756591}
   _manejadorMazo: {fileID: 760756595}
@@ -631,6 +632,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Mano
   _mazoReferencia: {fileID: 872788418}
   _cartasEnMano: []
+--- !u!1 &1751925432
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1751925433}
+  m_Layer: 0
+  m_Name: ContenedroCartasPrincipales
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1751925433
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1751925432}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.12, z: 0}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1997799715
 GameObject:
   m_ObjectHideFlags: 0
@@ -731,3 +763,4 @@ SceneRoots:
   - {fileID: 760756594}
   - {fileID: 872788419}
   - {fileID: 1234431515}
+  - {fileID: 1751925433}

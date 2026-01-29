@@ -1,8 +1,6 @@
-using NUnit.Framework;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
+
 
 public class ManagerMazo : MonoBehaviour
 {
@@ -18,9 +16,18 @@ public class ManagerMazo : MonoBehaviour
     [SerializeField] private float _offsetMazo = 0.02f;
 
 
-    void Start()
-    {
-        DibujarMazoVisual();
+
+    public Mazo MazoLogica => _mazoLogico;
+
+
+
+    void Start() {
+         if (_mazoLogico != null)
+        {
+            _mazoLogico.OnMazoChanged += DibujarMazoVisual;
+            // Dibujar inicialmente
+            DibujarMazoVisual();
+        }
     }
 
     void Update()
@@ -28,23 +35,25 @@ public class ManagerMazo : MonoBehaviour
     //Esto es con el Input Manager nuevo
     if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
     {
-        // Raycast desde mouse a mundo 2D
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+            // Raycast desde mouse a mundo 2D
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
 
-        if (hit.collider != null && hit.collider.gameObject == this.gameObject)
-        {
-            Debug.Log("CLICK DETECTADO en Mazo!"); 
+            if (hit.collider != null && (_contenedorMazo != null 
+                                            && hit.collider.transform.IsChildOf(_contenedorMazo)
+                                            || hit.collider.gameObject == this.gameObject))
+            {
+                Debug.Log("CLICK DETECTADO en Mazo!"); 
 
-            if (_manoReferencia != null)
-            {
-                _manoReferencia.PedirCartaAlMazo();
-                Debug.Log("Carta robada!");
-            }
-            else
-            {
-                Debug.LogError("_manoReferencia es NULL!");
-            }
+                if (_manoReferencia != null)
+                {
+                    _manoReferencia.PedirCartaAlMazo();
+                    Debug.Log("Carta robada!");
+                }
+                else
+                {
+                    Debug.LogError("_manoReferencia es NULL!");
+                }
 
             if (_managerCartaReferencia != null)
             {
@@ -56,18 +65,24 @@ public class ManagerMazo : MonoBehaviour
                 Debug.LogError("managerReferenciaCarta es NULL!");
             }
 
-            DibujarMazoVisual();
             Debug.Log($"Mazo ahora: {_mazoLogico.Count} cartas");
         }
     }
 }
 
     public void DibujarMazoVisual()
-    {    
-        foreach (Transform t in _contenedorMazo) Destroy(t.gameObject);
+    {
+        //foreach (Transform t in _contenedorMazo) Destroy(t.gameObject);
+        // Limpiar visuales anteriores (evita acumulación)
+        for (int i = _contenedorMazo.childCount - 1; i >= 0; i--)
+        {
+            Destroy(_contenedorMazo.GetChild(i).gameObject);
+        }
+
+
 
         //Intento de mostrar todas las cartas del mazo
-        int numCartas = _mazoLogico.Count;
+        int numCartas = Mathf.Min(_mazoLogico.Count, 52);
         for (int i = 0; i < numCartas; i++)
         {
             GameObject nuevaCarta = Instantiate(_prefabVisualMazo, _contenedorMazo);
@@ -76,10 +91,10 @@ public class ManagerMazo : MonoBehaviour
             CartaVisual visual = nuevaCarta.GetComponent<CartaVisual>();
             if (visual != null)
             {
-                visual.ConfigurarVisual(null, false);
+                visual.ConfigurarCarta(null, false, 7);
             }
 
-            //Se daba vuelta el mazo, con esto se mantiene
+
             SpriteRenderer sr = nuevaCarta.GetComponent<SpriteRenderer>();
             if (sr != null)
             {
