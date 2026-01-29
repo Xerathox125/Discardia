@@ -37,7 +37,7 @@ public class ManagerCarta : MonoBehaviour
         ActualizarSeparacionDeMano();
     }
 
-
+    // AQUI ESCOGE EL OBJECTO, PUEDES INTENTAR EN VIAR EL OBJECT O VER SI ES MEJOR OBTENER INFOMRACION DE LA CLASE CARTA.
     public GameObject SeleccionarCartaDeMano()
     {
         if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)

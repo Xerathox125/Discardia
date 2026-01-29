@@ -74,19 +74,24 @@ public class ManagerMazo : MonoBehaviour
     {
         //foreach (Transform t in _contenedorMazo) Destroy(t.gameObject);
         // Limpiar visuales anteriores (evita acumulación)
-        for (int i = _contenedorMazo.childCount - 1; i >= 0; i--)
+        foreach (Transform hijo in _contenedorMazo)
         {
-            Destroy(_contenedorMazo.GetChild(i).gameObject);
+            Destroy(hijo.gameObject);
         }
 
 
 
         //Intento de mostrar todas las cartas del mazo
         int numCartas = Mathf.Min(_mazoLogico.Count, 52);
+        float centroCartas = -1 * ((numCartas - 1) * _offsetMazo / 2f);
+
+
         for (int i = 0; i < numCartas; i++)
         {
             GameObject nuevaCarta = Instantiate(_prefabVisualMazo, _contenedorMazo);
-            nuevaCarta.transform.localPosition = new Vector3(0, i * _offsetMazo, 0);
+            float xPosx = (i * _offsetMazo) + centroCartas;
+
+            nuevaCarta.transform.localPosition = new Vector3(0, xPosx, 0);
 
             CartaVisual visual = nuevaCarta.GetComponent<CartaVisual>();
             if (visual != null)
