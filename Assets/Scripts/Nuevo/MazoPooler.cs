@@ -6,6 +6,7 @@ using UnityEngine.Pool;
 public class MazoPooler : MonoBehaviour, IClickable
 {
     [Header("Referencias")]
+    [SerializeField] private ManoManager _manoManager;
     [SerializeField] private CartaVisual _prefabCarta;
     [SerializeField] private List<Carta> _baseDeDatosCartas;
 
@@ -16,8 +17,6 @@ public class MazoPooler : MonoBehaviour, IClickable
     private IObjectPool<CartaVisual> _pool;
 
     
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
         _pool = new ObjectPool<CartaVisual>(
@@ -43,14 +42,12 @@ public class MazoPooler : MonoBehaviour, IClickable
             {
                 CartaVisual nuevaCarta = _pool.Get();
                 nuevaCarta.transform.SetParent(puntoGeneracion);
+                nuevaCarta.SetInteractable(false);
                 nuevaCarta.ConfigurarCarta(data, false, 7);
                 nuevaCarta.transform.localPosition = new Vector3(0, i * 0.010f, 0);
                 i++;
             }
         }
-        
-
-
     }
 
 
@@ -89,6 +86,7 @@ public class MazoPooler : MonoBehaviour, IClickable
     public void OnClick()
     {
         Debug.Log("Mazo clickeado, enviando carta a la mano...");
-        // Aquí podrías llamar al ManoManager.PedirCartaAlMazo()
+
+        _manoManager.PedirCartaAlMazo();
     }
 }

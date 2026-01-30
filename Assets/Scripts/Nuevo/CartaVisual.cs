@@ -9,6 +9,9 @@
 
 public class CartaVisual : MonoBehaviour, IClickable
 {
+    [SerializeField] private Collider2D _collider;
+
+
     // ===== Propiedades =====
     private Carta _dataActual;
 
@@ -62,6 +65,11 @@ public class CartaVisual : MonoBehaviour, IClickable
         {
             SetLayerRecursively(t.gameObject, layer);
         }
+    }
+
+    public void SetInteractable(bool state)
+    {
+        if (_collider != null) _collider.enabled = state;
     }
 
 

@@ -6,8 +6,6 @@ public class InputMouseManager : MonoBehaviour
 {
     private Camera _mainCamera;
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         _mainCamera = Camera.main;
@@ -16,7 +14,7 @@ public class InputMouseManager : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        // 1. Detectamos el clic una sola vez por frame
+
         if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
         {
             ProcesarClic();
@@ -36,7 +34,7 @@ public class InputMouseManager : MonoBehaviour
 
             if (objetoClickado != null)
             {
-                objetoClickado.OnClick(); // Notificamos al objeto
+                objetoClickado.OnClick(); 
             }
         }
     }

@@ -38,6 +38,7 @@ public class ManoManager : MonoBehaviour
         CartaVisual nuevaCarta = mazo.DarCartaFisicaDelMazo(ContenederMano, true);
         if (nuevaCarta != null)
         {
+            nuevaCarta.SetInteractable(true);
             cartasEnMano.Add(nuevaCarta);
             OrganizarVisualmente();
         }
