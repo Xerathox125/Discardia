@@ -7,11 +7,12 @@ public class CartaVisual : MonoBehaviour
 
     private void Awake()
     {
-       _renderizador = GetComponent<SpriteRenderer>();
+        if (_renderizador == null) _renderizador = GetComponent<SpriteRenderer>();
     }
 
-    public void ConfigurarVisual(Carta data, bool mostrarFrente)
+    public void ConfigurarCarta(Carta data, bool mostrarFrente, int layerIndex)
     {
+        SetLayerRecursively(this.gameObject, layerIndex);
 
         if (mostrarFrente)
         {
@@ -23,6 +24,7 @@ public class CartaVisual : MonoBehaviour
             else
             {
                 Debug.LogWarning("Se intentó mostrar el frente pero 'data' es nulo.");
+                _renderizador.sprite = _dorsoSprite;
             }
         }
         else
@@ -30,4 +32,27 @@ public class CartaVisual : MonoBehaviour
             _renderizador.sprite = _dorsoSprite;
         }
     }
+
+
+
+    private void SetLayerRecursively(GameObject go, int layer)
+    {
+        if (go == null) return;
+        int clamped = Mathf.Clamp(layer, 0, 31);
+        if (clamped != layer)
+        {
+            Debug.LogWarning($"Layer {layer} fuera de rango [0..31]. Usando {clamped} en su lugar. Revisa llamadas a ConfigurarCarta.");
+        }
+        go.layer = clamped;
+
+        foreach (Transform t in go.transform)
+        {
+            SetLayerRecursively(t.gameObject, layer);
+        }
+    }
+
+
+
+
+
 }
