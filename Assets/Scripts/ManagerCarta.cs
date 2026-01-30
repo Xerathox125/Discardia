@@ -16,7 +16,6 @@ public class ManagerCarta : MonoBehaviour
     [Range(-5f, 5f)] public float _intensidadRotacion = 0.6f;
 
 
-
     public GameObject PrefabCarta => _prefabCarta;
 
 
@@ -38,7 +37,7 @@ public class ManagerCarta : MonoBehaviour
     }
 
     // AQUI ESCOGE EL OBJECTO, PUEDES INTENTAR EN VIAR EL OBJECT O VER SI ES MEJOR OBTENER INFOMRACION DE LA CLASE CARTA.
-    public GameObject SeleccionarCartaDeMano()
+    public Carta SeleccionarCartaDeMano()
     {
         if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
         {
@@ -48,7 +47,12 @@ public class ManagerCarta : MonoBehaviour
             if (hit)
             {
                 Debug.Log("CLICK DETECTADO en Mano!");
-                return hit.collider.gameObject;
+                CartaVisual visual = hit.collider.gameObject.GetComponent<CartaVisual>();
+                if (visual != null && visual.Data != null)
+                {
+                    return visual.Data;
+                }
+                //return hit.collider.gameObject;
             }
             return null;
         }
@@ -62,7 +66,6 @@ public class ManagerCarta : MonoBehaviour
 
         // Limpiar mano anterior si existe (opcional)
         foreach (Transform hijo in _contenedorMano) Destroy(hijo.gameObject);
-
 
         for (int i = 0; i < _manoReferencia.CartaEnMano.Count; i++)
         {
@@ -83,9 +86,10 @@ public class ManagerCarta : MonoBehaviour
         if (totalCartas == 0) return;
 
         //Espaciado para que entre en el ancho, suplanta a _espaciado
-        float espaciadoCalculado = _anchoManoMax / (totalCartas - 1);
+        float espaciadoCalculado = (totalCartas > 1) ? _anchoManoMax / (totalCartas - 1) : 0f;
         float anchoTotal = (totalCartas - 1) * espaciadoCalculado;  
         float puntoInicioX = -anchoTotal / 2f;
+
 
         for (int i = 0; i < totalCartas; i++)
         {
@@ -109,6 +113,8 @@ public class ManagerCarta : MonoBehaviour
             {
                 sr.sortingOrder = i;
             }
+
+            
         }
     }
 }

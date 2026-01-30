@@ -386,9 +386,10 @@ MonoBehaviour:
   _prefabCarta: {fileID: 3538411816888903347, guid: 29a10d2c4e06fd3469556150aa50fae5, type: 3}
   _contenedorMano: {fileID: 1234431515}
   _manoReferencia: {fileID: 1234431516}
-  _anchoManoMax: 15
+  _anchoManoMax: 20
   _intensidadCurva: 0.05
   _intensidadRotacion: 0.6
+  _centroManoX: 0
 --- !u!114 &760756593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -402,9 +403,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   _contenedorCartasJuego: {fileID: 1192365560}
-  _mazo: {fileID: 872788418}
+  _mazo: {fileID: 0}
   _manejadorMano: {fileID: 760756591}
   _manejadorMazo: {fileID: 760756595}
+  _pilaDeJuego: {fileID: 0}
 --- !u!4 &760756594
 Transform:
   m_ObjectHideFlags: 0
@@ -697,6 +699,7 @@ MonoBehaviour:
   _mazoReferencia: {fileID: 872788418}
   _manejadorCarta: {fileID: 760756591}
   _cartasEnMano: []
+  _piladeJuego: {fileID: 0}
 --- !u!1 &1886842141
 GameObject:
   m_ObjectHideFlags: 0

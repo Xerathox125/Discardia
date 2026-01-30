@@ -7,6 +7,7 @@ public class Mano : MonoBehaviour
     [SerializeField] private Mazo _mazoReferencia;
     [SerializeField] private ManagerCarta _manejadorCarta;
     [SerializeField] private List<Carta> _cartasEnMano = new List<Carta>();
+    [SerializeField] private PilaDeJuego _pilaDeJuego;
 
     public List<Carta> CartaEnMano => _cartasEnMano;
 
@@ -16,7 +17,7 @@ public class Mano : MonoBehaviour
         if (_mazoReferencia != null)
         {
             _cartasEnMano = _mazoReferencia.GenerarMano(12);
-            print($"Mano creada con {_cartasEnMano.Count} cartas." );
+            print($"Mano creada con {_cartasEnMano.Count} cartas.");
         }
     }
 
@@ -47,13 +48,21 @@ public class Mano : MonoBehaviour
 
     public void SelecionarCartaAlJuego()
     {
-        GameObject nueva = _manejadorCarta.SeleccionarCartaDeMano();
+        Carta cartaSeleccionada = _manejadorCarta.SeleccionarCartaDeMano();
+        if (cartaSeleccionada == null) return;
+        Debug.Log(cartaSeleccionada.Nombre);
 
-        if (nueva != null)
+        if (_pilaDeJuego.AgregarCarta(cartaSeleccionada))
         {
-            Debug.Log(nueva.name );
+            _cartasEnMano.Remove(cartaSeleccionada);
+            _manejadorCarta.DibujarManoInicial();
+            Debug.Log($"Carta movida a pozo: {cartaSeleccionada.Nombre}");
         }
-
+        else
+        {
+            Debug.Log("Carta no valida");
+        }
+        
     }
 
 }

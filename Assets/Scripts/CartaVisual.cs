@@ -5,6 +5,9 @@ public class CartaVisual : MonoBehaviour
     private SpriteRenderer _renderizador;
     [SerializeField] private Sprite _dorsoSprite;
 
+    //Para obtener los datos de la carta
+    public Carta Data { get; private set; }
+
     private void Awake()
     {
         if (_renderizador == null) _renderizador = GetComponent<SpriteRenderer>();
@@ -12,18 +15,20 @@ public class CartaVisual : MonoBehaviour
 
     public void ConfigurarCarta(Carta data, bool mostrarFrente, int layerIndex)
     {
+        Data = data;
+
         SetLayerRecursively(this.gameObject, layerIndex);
 
         if (mostrarFrente)
         {
-            // Si queremos mostrar el frente, SÍ necesitamos data
+            // Si queremos mostrar el frente, Sï¿½ necesitamos data
             if (data != null)
             {
                 _renderizador.sprite = data.Imagen;
             }
             else
             {
-                Debug.LogWarning("Se intentó mostrar el frente pero 'data' es nulo.");
+                Debug.LogWarning("Se intentï¿½ mostrar el frente pero 'data' es nulo.");
                 _renderizador.sprite = _dorsoSprite;
             }
         }

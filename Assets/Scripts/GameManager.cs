@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Mazo _mazo;
     [SerializeField] private ManagerCarta _manejadorMano;
     [SerializeField] private ManagerMazo _manejadorMazo;
+    [SerializeField] private PilaDeJuego _pilaDeJuego;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -34,8 +35,20 @@ public class GameManager : MonoBehaviour
         if (_manejadorMazo == null) return ;
 
         int randomCard = Random.Range(0, _manejadorMazo.MazoLogica.MazoBase.Count);
+        Carta randomCarta = _manejadorMazo.MazoLogica.MazoBase[randomCard];
+        _manejadorMazo.MazoLogica.QuitarCartaEspecifica(randomCarta);
+        
+        _pilaDeJuego.Pozo.Add(randomCarta);
+        _pilaDeJuego.DibujarPozoVisual();
+        //DibujarCartasTablero(_pilaDeJuego.Pozo[0]);
+
+        /*
+        int randomCard = Random.Range(0, _manejadorMazo.MazoLogica.MazoBase.Count);
+        Carta randomCarta = _manejadorMazo.MazoLogica.MazoBase[randomCard];
+        _manejadorMazo.MazoLogica.QuitarCartaEspecifica(randomCarta);
+
         DibujarCartasTablero(_manejadorMazo.MazoLogica.MazoBase[randomCard]);      
-        _manejadorMazo.MazoLogica.MazoBase.RemoveAt(randomCard);
+        _manejadorMazo.MazoLogica.MazoBase.RemoveAt(randomCard);*/
 
     }
 
