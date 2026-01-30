@@ -43,9 +43,23 @@ public class ManagerCarta : MonoBehaviour
         if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
         {
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-            RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero, Mathf.Infinity, 1 << 8);
+            //RaycastAll porque ayuda con el overlap
+            RaycastHit2D[] hits = Physics2D.RaycastAll(mousePos,Vector2.zero,Mathf.Infinity, 1 << 8);
+            //RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero, Mathf.Infinity, 1 << 8);
 
-            if (hit)
+            if (hits.Length > 0)
+            {
+                //Se clasifica segun la distancia con el click comparando ambas y buscando el mas gameobject mas cercano
+                System.Array.Sort(hits, (a, b) => 
+                b.transform.GetComponent<SpriteRenderer>().sortingOrder.CompareTo(a.transform.GetComponent<SpriteRenderer>().sortingOrder)
+                );
+                CartaVisual visual = hits[0].collider.gameObject.GetComponent<CartaVisual>();
+                if (visual != null && visual.Data != null)
+                {
+                    return visual.Data;
+                }
+            }
+            /*if (hit)
             {
                 Debug.Log("CLICK DETECTADO en Mano!");
                 CartaVisual visual = hit.collider.gameObject.GetComponent<CartaVisual>();
@@ -54,7 +68,7 @@ public class ManagerCarta : MonoBehaviour
                     return visual.Data;
                 }
                 //return hit.collider.gameObject;
-            }
+            }*/
             return null;
         }
         return null;
