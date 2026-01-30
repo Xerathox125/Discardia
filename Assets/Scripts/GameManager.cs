@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         _manejadorMano.DibujarManoInicial();
-        _manejadorMazo.DibujarMazoVisual();
+        //_manejadorMazo.DibujarMazoVisual();
     }
 
 

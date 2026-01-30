@@ -17,7 +17,5 @@ MonoBehaviour:
   tipo: 0
   palo: 3
   imagen: {fileID: 5161522409372076024, guid: 7427c7f4b581e8c49b502bf7be9a0ebe, type: 3}
+  dorso: {fileID: -3345374736884171346, guid: 617eb73b2c5932a4aa55cf797973ad65, type: 3}
   descripcion: 
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 128

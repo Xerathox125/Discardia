@@ -21,6 +21,7 @@ public class Carta : ScriptableObject
     [SerializeField] private TipoCarta tipo;
     [SerializeField] private Palo palo;
     [SerializeField] private Sprite imagen;
+    [SerializeField] private Sprite dorso;
     [SerializeField, TextArea] private string descripcion;
     //[SerializeField] private string tagName;
     public string Nombre => nombre;
@@ -28,6 +29,7 @@ public class Carta : ScriptableObject
     public TipoCarta Tipo => tipo;
     public Palo Palo => palo;
     public Sprite Imagen => imagen;
+    public Sprite Dorso => dorso;   
     public string Descripcion => descripcion;
    //public string TagName => tagName;
 }

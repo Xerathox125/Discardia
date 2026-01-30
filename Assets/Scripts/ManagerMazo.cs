@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-public class ManagerMazo : MonoBehaviour
+public class ManagerMazo : MonoBehaviour, IClickable
 {
     [SerializeField] private Mazo _mazoLogico;
     [SerializeField] private GameObject _prefabVisualMazo;
@@ -13,7 +13,7 @@ public class ManagerMazo : MonoBehaviour
     [SerializeField] public Mano _manoReferencia;
     [SerializeField] public ManagerCarta _managerCartaReferencia;
 
-    [SerializeField] private float _offsetMazo = 0.02f;
+    //[SerializeField] private float _offsetMazo = 0.02f;
 
 
 
@@ -22,12 +22,7 @@ public class ManagerMazo : MonoBehaviour
 
 
     void Start() {
-         if (_mazoLogico != null)
-        {
-            _mazoLogico.OnMazoChanged += DibujarMazoVisual;
-            // Dibujar inicialmente
-            DibujarMazoVisual();
-        }
+       
     }
 
     void Update()
@@ -70,41 +65,65 @@ public class ManagerMazo : MonoBehaviour
     }
 }
 
-    public void DibujarMazoVisual()
+
+
+    public void OnClick()
     {
-        //foreach (Transform t in _contenedorMazo) Destroy(t.gameObject);
-        // Limpiar visuales anteriores (evita acumulación)
-        foreach (Transform hijo in _contenedorMazo)
+        Debug.Log("Soy el Mazo y me han clickeado!");
+
+        if (_mazoLogico.Count > 0)
         {
-            Destroy(hijo.gameObject);
-        }
-
-
-
-        //Intento de mostrar todas las cartas del mazo
-        int numCartas = Mathf.Min(_mazoLogico.Count, 52);
-        float centroCartas = -1 * ((numCartas - 1) * _offsetMazo / 2f);
-
-
-        for (int i = 0; i < numCartas; i++)
-        {
-            GameObject nuevaCarta = Instantiate(_prefabVisualMazo, _contenedorMazo);
-            float xPosx = (i * _offsetMazo) + centroCartas;
-
-            nuevaCarta.transform.localPosition = new Vector3(0, xPosx, 0);
-
-            CartaVisual visual = nuevaCarta.GetComponent<CartaVisual>();
-            if (visual != null)
-            {
-                visual.ConfigurarCarta(null, false, 7);
-            }
-
-
-            SpriteRenderer sr = nuevaCarta.GetComponent<SpriteRenderer>();
-            if (sr != null)
-            {
-                sr.sortingOrder = i; // i=0: atrás, i=max: adelante
-            }
+            _manoReferencia.PedirCartaAlMazo();
         }
     }
+
+
+
+
+
+
+
+
+
+    //public void DibujarMazoVisual()
+    //{
+    //    //foreach (Transform t in _contenedorMazo) Destroy(t.gameObject);
+    //    // Limpiar visuales anteriores (evita acumulación)
+    //    foreach (Transform hijo in _contenedorMazo)
+    //    {
+    //        Destroy(hijo.gameObject);
+    //    }
+
+
+
+    //    //Intento de mostrar todas las cartas del mazo
+    //    int numCartas = Mathf.Min(_mazoLogico.Count, 52);
+    //    float centroCartas = -1 * ((numCartas - 1) * _offsetMazo / 2f);
+
+
+    //    for (int i = 0; i < numCartas; i++)
+    //    {
+    //        GameObject nuevaCarta = Instantiate(_prefabVisualMazo, _contenedorMazo);
+    //        float xPosx = (i * _offsetMazo) + centroCartas;
+
+    //        nuevaCarta.transform.localPosition = new Vector3(0, xPosx, 0);
+
+    //        CartaVisual visual = nuevaCarta.GetComponent<CartaVisual>();
+    //        if (visual != null)
+    //        {
+    //            visual.ConfigurarCarta(null, false, 7);
+    //        }
+
+
+    //        SpriteRenderer sr = nuevaCarta.GetComponent<SpriteRenderer>();
+    //        if (sr != null)
+    //        {
+    //            sr.sortingOrder = i; // i=0: atrás, i=max: adelante
+    //        }
+    //    }
+    //}
+
+
+
+
 }
