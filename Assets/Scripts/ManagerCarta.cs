@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -59,7 +60,36 @@ public class ManagerCarta : MonoBehaviour
         return null;
     }
 
+    public void DibujarManoInicial()
+    {
+        if (_manoReferencia == null) { Debug.LogError("No hay referencia a Mano"); return; }
 
+        StartCoroutine(RedrawManoCoroutine());
+    }
+
+    private IEnumerator RedrawManoCoroutine()
+    {
+        // Limpiar mano anterior
+        foreach (Transform hijo in _contenedorMano) Destroy(hijo.gameObject);
+
+        // Espera end of frame para que destroy se complete 
+        yield return new WaitForEndOfFrame();
+
+        for (int i = 0; i < _manoReferencia.CartaEnMano.Count; i++)
+        {
+            GameObject nuevaCartaGO = Instantiate(_prefabCarta, _contenedorMano);
+
+            CartaVisual visual = nuevaCartaGO.GetComponent<CartaVisual>();
+            if (visual != null)
+            {
+                visual.ConfigurarCarta(_manoReferencia.CartaEnMano[i], true, 8);
+            }
+        }
+        ActualizarSeparacionDeMano();
+    }
+
+
+/*
     public void DibujarManoInicial()
     {
         if (_manoReferencia == null) { Debug.LogError("No hay referencia a Mano"); return; }
@@ -78,13 +108,13 @@ public class ManagerCarta : MonoBehaviour
             }
         }
         ActualizarSeparacionDeMano();
-    }
+    }*/
 
     public void ActualizarSeparacionDeMano()
     {
         int totalCartas = _contenedorMano.childCount;
         if (totalCartas == 0) return;
-
+        Debug.Log($"Total cartas: {totalCartas}");
         //Espaciado para que entre en el ancho, suplanta a _espaciado
         float espaciadoCalculado = (totalCartas > 1) ? _anchoManoMax / (totalCartas - 1) : 0f;
         float anchoTotal = (totalCartas - 1) * espaciadoCalculado;  

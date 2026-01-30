@@ -43,7 +43,7 @@ public class CartaVisual : MonoBehaviour
     private void SetLayerRecursively(GameObject go, int layer)
     {
         if (go == null) return;
-        int clamped = Mathf.Clamp(layer, 0, 31);
+        int clamped = Mathf.Clamp(layer, 1, 31);
         if (clamped != layer)
         {
             Debug.LogWarning($"Layer {layer} fuera de rango [0..31]. Usando {clamped} en su lugar. Revisa llamadas a ConfigurarCarta.");
